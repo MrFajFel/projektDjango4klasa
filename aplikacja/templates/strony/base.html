@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+
+    <nav class="nav">
+        <span> <a href="#">Strona główna</a></span>
+        <span> <a href="#">O nas</a></span>
+        <span> <a href="#">Kontakt</a></span>
+        <span> <a href="#">Zaloguj</a></span>
+    </nav>
+    {% block content %}
+
+
+    {% endblock %}
+</body>
+</html>
