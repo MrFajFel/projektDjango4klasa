@@ -8,7 +8,7 @@ from django.utils import timezone
 class User(Model):
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
-    email = models.CharField(max_length=200, default=0)
+    email = models.CharField(max_length=200, default="email@email.com")
 
     def save(self, *args, **kwargs):
         if not self.pk:
