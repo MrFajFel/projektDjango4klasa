@@ -22,21 +22,25 @@ def logowanie(request):
     if request.method == 'POST':
         form = LogForm(request.POST)
         if form.is_valid():
-            #Sprawdzenie danych logowania
-            for user in User.objects.all():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
 
-                if (
-                        form.cleaned_data['username'] == user.username and
-                        check_password(form.cleaned_data['password'], user.password)
-                ):
-                    # Tworzenie odpowiedzi z przekierowaniem
+            try:
+                # Pobranie użytkownika na podstawie nazwy użytkownika
+                user = User.objects.get(username=username)
+                # Sprawdzenie hasła
+                if check_password(password, user.password):
+                    # Logowanie użytkownika (ustawienie ciasteczka lub sesji)
                     response = HttpResponseRedirect('/')  # lub reverse('app:info')
                     response.set_cookie("Zalogowany", '1')  # Ustawienie ciasteczka
+                    response.set_cookie("username", user.username)  # Przechowywanie nazwy użytkownika w ciasteczku
                     return response
-
-            #Jeśli dane logowania są niepoprawne, przekaż błąd
-            form.add_error(None, "Niepoprawne dane logowania")
-
+                else:
+                    # Dodanie błędu w przypadku niepoprawnego hasła
+                    form.add_error(None, "Niepoprawne dane logowania")
+            except User.DoesNotExist:
+                # Dodanie błędu, jeśli użytkownik nie istnieje
+                form.add_error(None, "Niepoprawne dane logowania")
     else:
         form = LogForm()
 

@@ -10,11 +10,6 @@ class User(Model):
     password = models.CharField(max_length=200)
     email = models.CharField(max_length=200, default="email@email.com")
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.password = make_password(self.password)
-            super().save(*args, **kwargs)
-
 
 class Animals(Model):
     STATUS_CHOICES = (
