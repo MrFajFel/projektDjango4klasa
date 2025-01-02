@@ -1,5 +1,10 @@
 {% extends 'strony/base.html' %}
 
 {% block content %}
-    <h1> tu bedzie fomularz </h1>
+    <h2>Wyślij e-mail</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Wyślij</button>
+    </form>
 {% endblock %}
