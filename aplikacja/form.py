@@ -7,7 +7,8 @@ class LogForm(forms.ModelForm):
         model = User
         fields = ('username', 'password')
         widgets = {
-            'password': forms.PasswordInput()
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'})
         }
 
 class UserRegistrationForm(forms.ModelForm):
@@ -15,6 +16,7 @@ class UserRegistrationForm(forms.ModelForm):
         model = User
         fields = ('username', 'password','email')
         widgets = {
-            'password': forms.PasswordInput(),
-            'email': forms.EmailInput()
+            'username': forms.TextInput(attrs={'class':'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'})
         }

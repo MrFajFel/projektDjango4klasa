@@ -2,11 +2,13 @@
 {% block title %}Utworz Konto{% endblock %}
 
 {% block content %}
-    <h1>Utworz konto</h1>
+    <h1 style="text-align: center">Utworz konto</h1>
+    <div style="height: fit-content; width: 80%; margin-left: 33%; margin-top: 5rem">
     <p>Wypelnij ponizszy formularz, aby sie zajerejstrowac</p>
-    <form action="#" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" class="btn btn-primary" value="Utworz konto"></p>
-    </form>
+        <form action="#" method="post" style="width: 50%">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" class="btn btn-primary" value="Utworz konto"></p>
+        </form>
+    </div>
 {% endblock %}

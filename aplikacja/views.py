@@ -1,12 +1,16 @@
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.shortcuts import render
+from django.views.generic import ListView
 from aplikacja.form import UserRegistrationForm, LogForm
-from aplikacja.models import User
-from django.shortcuts import render
+from aplikacja.models import User,Animals
 
 
+class Adopcja(ListView):
+    queryset =  Animals.objects.all().order_by('-dodano')
+    context_object_name = 'Animals'
+    paginate_by = 9
+    template_name = 'strony/adopcja.html'
 
 def mainPage(request):
     return render(request,'strony/stronaGlowna.html',{'mainPage':'mainPage'})
@@ -14,8 +18,10 @@ def mainPage(request):
 def about_us(request):
     return render(request,'strony/oNas.html',{'about_us':'about_us'})
 
-def adopcja(request):
-    return  render(request,'strony/adopcja.html', {'adopcja':'adopcja'})
+# def adopcja(request):
+#     return  render(request,'strony/adopcja.html', {'adopcja':'adopcja'})
+def kontakt(request):
+    return render(request,'strony/kontakt.html', {'kontakt':'kontakt'})
 
 
 def logowanie(request):
