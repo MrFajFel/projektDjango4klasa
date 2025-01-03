@@ -18,6 +18,7 @@ class Animals(Model):
     )
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=100)
+    picture = models.ImageField(upload_to='zdjecia', blank=True, null=True)
     animal_race = models.CharField(max_length=100)
     age = models.CharField(max_length=200)
     description = models.CharField(max_length=400)

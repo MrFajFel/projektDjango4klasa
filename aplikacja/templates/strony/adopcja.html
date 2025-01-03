@@ -1,6 +1,23 @@
 {% extends 'strony/base.html' %}
 
-{% block content %}
-<h1>Tu beda zwierzaki</h1>
 
+
+
+{#co ma model animal = name, type, picture, animal_race, age, description, dodano, status #}
+{% block content %}
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 2rem; width: 100%; height: 10rem">
+    {% for Animal in Animals %}
+        {% if Animal.status == "nieAdoptowany" %}
+            <div class="card" style="width: 20%">
+              <img src="{{ Animal.picture.url }}" class="card-img-top" alt="rysio why">
+
+              <div class="card-body">
+                <h5 class="card-title">{{ Animal.name }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="/kontakt/" class="btn btn-primary">Kontakt</a>
+              </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
 {% endblock %}
