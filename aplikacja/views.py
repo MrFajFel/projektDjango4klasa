@@ -13,7 +13,8 @@ class Adopcja(ListView):
     template_name = 'strony/adopcja.html'
 
 def mainPage(request):
-    return render(request,'strony/stronaGlowna.html',{'mainPage':'mainPage'})
+    cookie_exists = 'Zalogowany' and "username" in request.COOKIES
+    return render(request,'strony/stronaGlowna.html',{'cookie_exists':cookie_exists})
 
 def about_us(request):
     return render(request,'strony/oNas.html',{'about_us':'about_us'})
@@ -25,6 +26,9 @@ def kontakt(request):
 
 
 def logowanie(request):
+    cookie_exists = 'Zalogowany' and "username" in request.COOKIES
+    if cookie_exists:
+        return HttpResponseRedirect('/')
     if request.method == 'POST':
         form = LogForm(request.POST)
         if form.is_valid():
@@ -53,8 +57,18 @@ def logowanie(request):
     return render(request, 'logowanie_i_rejestracja/login.html', {'form': form})
 
 
+def wyloguj(request):
+    response = HttpResponseRedirect('/wyloguj_done/')
+    response.delete_cookie('Zalogowany')
+    response.delete_cookie('username')
+    return response
 
+def wyloguj_done(request):
+    return render(request, 'logowanie_i_rejestracja/wyloguj.html', {'wyloguj': 'wyloguj'})
 def register(request):
+    cookie_exists = 'Zalogowany' and "username" in request.COOKIES
+    if cookie_exists:
+        return HttpResponseRedirect('/')
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
