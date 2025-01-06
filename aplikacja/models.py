@@ -14,7 +14,7 @@ class User(Model):
 class Animals(Model):
     STATUS_CHOICES = (
         ('adoptowany', 'Adoptowany'),
-        ('nieAdoptowany', 'NieAdoptowany')
+        ('nie-adoptowany', 'Nie-adoptowany')
     )
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=100)
@@ -25,6 +25,6 @@ class Animals(Model):
     dodano = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=20,
                              choices=STATUS_CHOICES,
-                             default='nieAdoptowany')
+                             default='Nie-adoptowany')
 
 # Create your models here.

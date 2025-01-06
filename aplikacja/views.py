@@ -2,28 +2,45 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
+
 from aplikacja.form import UserRegistrationForm, LogForm
-from aplikacja.models import User,Animals
+from aplikacja.models import User, Animals
 
 
 class Adopcja(ListView):
-    queryset =  Animals.objects.all().order_by('-dodano')
+    queryset = Animals.objects.all().order_by('-dodano')
     context_object_name = 'Animals'
     paginate_by = 9
     template_name = 'strony/adopcja.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        # Sprawdzenie, czy użytkownik jest zalogowany na podstawie ciasteczek
+        if "Zalogowany" not in request.COOKIES or "username" not in request.COOKIES:
+            return redirect('/')  # Przekierowanie na stronę logowania
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Dodanie informacji o ciasteczkach do kontekstu
+        context['cookie_exists'] = 'Zalogowany' in self.request.COOKIES and "username" in self.request.COOKIES
+        context['username'] = self.request.COOKIES.get("username", "")  # Pobranie nazwy użytkownika z ciasteczka
+        return context
+
+
 
 def mainPage(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
     return render(request,'strony/stronaGlowna.html',{'cookie_exists':cookie_exists})
 
 def about_us(request):
-    return render(request,'strony/oNas.html',{'about_us':'about_us'})
+    cookie_exists = 'Zalogowany' and "username" in request.COOKIES
+    return render(request, 'strony/oNas.html', {'cookie_exists':cookie_exists})
 
-# def adopcja(request):
-#     return  render(request,'strony/adopcja.html', {'adopcja':'adopcja'})
 def kontakt(request):
-    return render(request,'strony/kontakt.html', {'kontakt':'kontakt'})
-
+    cookie_exists = 'Zalogowany' and "username" in request.COOKIES
+    if "Zalogowany" not in request.COOKIES:
+        return redirect('/')  # Przekierowanie na stronę logowania
+    return render(request, 'strony/kontakt.html', {'cookie_exists':cookie_exists})
 
 def logowanie(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    Rejestracja udana kliknij <a href="/logowanie/">tutaj</a> zeby przejsc do logowania
-</body>
-</html>
+{% extends 'strony/base.html' %}
+{% block content %}
+    <div class="alert alert-success" role="alert">
+        Rejestracja udana kliknij <a href="/logowanie/">tutaj</a> zeby przejsc do logowania
+    </div>
+{% endblock %}

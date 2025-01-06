@@ -20,21 +20,21 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/o-nas/">O nas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/adopcja/">Adopcja</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/kontakt/" >Kontakt</a>
-        </li>
-            {% if cookie_exists %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/wyloguj/">Wyloguj</a>
-                </li>
-            {% else %}
+          {% if cookie_exists %}
+              <li class="nav-item">
+                <a class="nav-link" href="/adopcja/">Adopcja</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/kontakt/" >Kontakt</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wyloguj/">Wyloguj</a>
+              </li>
+          {% else %}
              <li class="nav-item">
                 <a class="nav-link" href="/logowanie/">Zaloguj</a>
             </li>
-          {% endif %}
+    {% endif %}
       </ul>
     </div>
   </div>

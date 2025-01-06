@@ -5,19 +5,19 @@
 
 {#co ma model animal = name, type, picture, animal_race, age, description, dodano, status #}
 {% block content %}
-    <div style="display: flex; justify-content: center; align-items: center; margin-top: 2rem; width: 100%; height: 10rem">
     {% for Animal in Animals %}
-        {% if Animal.status == "nieAdoptowany" %}
+        {% if Animal.status != "adoptowany" %}
             <div class="card" style="width: 20%">
               <img src="{{ Animal.picture.url }}" class="card-img-top" alt="rysio why">
 
               <div class="card-body">
-                <h5 class="card-title">{{ Animal.name }}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">{{ Animal.name }} Lat: {{ Animal.age }}</h5>
+                <p class="card-text">{{ Animal.description }} , {{ Animal.status }}</p>
                 <a href="/kontakt/" class="btn btn-primary">Kontakt</a>
               </div>
             </div>
+        {% else %}
+
         {% endif %}
     {% endfor %}
-    </div>
 {% endblock %}
