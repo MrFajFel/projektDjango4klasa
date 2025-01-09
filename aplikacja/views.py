@@ -38,8 +38,6 @@ def about_us(request):
 
 def kontakt(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
-    if "Zalogowany" not in request.COOKIES:
-        return redirect('/')  # Przekierowanie na stronę logowania
     return render(request, 'strony/kontakt.html', {'cookie_exists':cookie_exists})
 
 def logowanie(request):

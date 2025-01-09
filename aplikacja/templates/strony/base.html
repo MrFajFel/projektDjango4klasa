@@ -1,10 +1,11 @@
-{% load django_bootstrap5 %}
+{% load bootstrap5 %}
 {% load static %}
 {% bootstrap_css %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/stronaGlowna.css">
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
@@ -20,12 +21,12 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/o-nas/">O nas</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/kontakt/" >Kontakt</a>
+        </li>
           {% if cookie_exists %}
               <li class="nav-item">
                 <a class="nav-link" href="/adopcja/">Adopcja</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/kontakt/" >Kontakt</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/wyloguj/">Wyloguj</a>
