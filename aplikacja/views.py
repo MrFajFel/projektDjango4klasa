@@ -30,7 +30,8 @@ class Adopcja(ListView):
 
 def mainPage(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
-    return render(request,'strony/stronaGlowna.html',{'cookie_exists':cookie_exists})
+    admin = request.COOKIES.get('Zalogowany')
+    return render(request,'strony/stronaGlowna.html',{'cookie_exists':cookie_exists, 'admin':admin})
 
 def about_us(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
@@ -42,7 +43,7 @@ def kontakt(request):
 
 def logowanie(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
-    if cookie_exists:
+    if cookie_exists :
         return HttpResponseRedirect('/')
     if request.method == 'POST':
         form = LogForm(request.POST)
@@ -56,8 +57,11 @@ def logowanie(request):
                 # Sprawdzenie hasła
                 if check_password(password, user.password):
                     # Logowanie użytkownika (ustawienie ciasteczka lub sesji)
-                    response = HttpResponseRedirect('/')  # lub reverse('app:info')
-                    response.set_cookie("Zalogowany", '1')  # Ustawienie ciasteczka
+                    response = HttpResponseRedirect('/')
+                    if user.admin:
+                        response.set_cookie("Zalogowany", '1')
+                    else:
+                        response.set_cookie("Zalogowany", '0')  # Ustawienie ciasteczka
                     response.set_cookie("username", user.username)  # Przechowywanie nazwy użytkownika w ciasteczku
                     return response
                 else:
