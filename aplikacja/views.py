@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
-from aplikacja.form import UserRegistrationForm, LogForm
+from aplikacja.form import UserRegistrationForm, LogForm, AddAnimal
 from aplikacja.models import User, Animals
 
 
@@ -14,32 +14,34 @@ class Adopcja(ListView):
     template_name = 'strony/adopcja.html'
 
     def dispatch(self, request, *args, **kwargs):
-        # Sprawdzenie, czy użytkownik jest zalogowany na podstawie ciasteczek
+        admin = request.COOKIES.get('Zalogowany', 1)
         if "Zalogowany" not in request.COOKIES or "username" not in request.COOKIES:
-            return redirect('/')  # Przekierowanie na stronę logowania
+            return redirect('/')
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Dodanie informacji o ciasteczkach do kontekstu
         context['cookie_exists'] = 'Zalogowany' in self.request.COOKIES and "username" in self.request.COOKIES
-        context['username'] = self.request.COOKIES.get("username", "")  # Pobranie nazwy użytkownika z ciasteczka
+        context['username'] = self.request.COOKIES.get("username", "")
+        context['admin'] = self.request.COOKIES.get('Zalogowany', 1)
         return context
 
 
 
 def mainPage(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
-    admin = request.COOKIES.get('Zalogowany')
+    admin = request.COOKIES.get('Zalogowany',1)
     return render(request,'strony/stronaGlowna.html',{'cookie_exists':cookie_exists, 'admin':admin})
 
 def about_us(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
-    return render(request, 'strony/oNas.html', {'cookie_exists':cookie_exists})
+    admin = request.COOKIES.get('Zalogowany', 1)
+    return render(request, 'strony/oNas.html', {'cookie_exists':cookie_exists, 'admin':admin})
 
 def kontakt(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
-    return render(request, 'strony/kontakt.html', {'cookie_exists':cookie_exists})
+    admin = request.COOKIES.get('Zalogowany', 1)
+    return render(request, 'strony/kontakt.html', {'cookie_exists':cookie_exists, 'admin':admin})
 
 def logowanie(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
@@ -52,23 +54,18 @@ def logowanie(request):
             password = form.cleaned_data['password']
 
             try:
-                # Pobranie użytkownika na podstawie nazwy użytkownika
                 user = User.objects.get(username=username)
-                # Sprawdzenie hasła
                 if check_password(password, user.password):
-                    # Logowanie użytkownika (ustawienie ciasteczka lub sesji)
                     response = HttpResponseRedirect('/')
                     if user.admin:
                         response.set_cookie("Zalogowany", '1')
                     else:
-                        response.set_cookie("Zalogowany", '0')  # Ustawienie ciasteczka
-                    response.set_cookie("username", user.username)  # Przechowywanie nazwy użytkownika w ciasteczku
+                        response.set_cookie("Zalogowany", '0')# ustawienie ciasteczka
+                    response.set_cookie("username", user.username)
                     return response
                 else:
-                    # Dodanie błędu w przypadku niepoprawnego hasła
                     form.add_error(None, "Niepoprawne dane logowania")
             except User.DoesNotExist:
-                # Dodanie błędu, jeśli użytkownik nie istnieje
                 form.add_error(None, "Niepoprawne dane logowania")
     else:
         form = LogForm()
@@ -91,7 +88,7 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            # Utworzenie nowego użytkownika na podstawie formularza
+
             new_user = User(
                 username=form.cleaned_data['username'],
                 password=make_password(form.cleaned_data['password']),
@@ -102,3 +99,27 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'logowanie_i_rejestracja/rejestracja.html', {'form': form})
+
+
+# {#('name','age','type','picture','animal_race','description') #}
+def dodanieZwierzaka(request):
+    cookie_exists = 'Zalogowany' and "username" in request.COOKIES
+    admin = request.COOKIES.get('Zalogowany', 1)
+    if admin == '0':
+        return HttpResponseRedirect('/')
+    if request.method == 'POST':
+        form = AddAnimal(request.POST,request.FILES)
+        if form.is_valid():
+            new_animal = Animals(
+                name=form.cleaned_data['name'],
+                type=form.cleaned_data['type'],
+                picture=form.cleaned_data['picture'],
+                animal_race = form.cleaned_data['animal_race'],
+                age = form.cleaned_data['age'],
+                description = form.cleaned_data['description'],
+            )
+            new_animal.save()
+            return HttpResponseRedirect('/adopcja/')
+    else:
+        form = AddAnimal()
+    return render(request, 'stronyAdministratora/dodajZwierzaka.html', {'form': form,'cookie_exists':cookie_exists, 'admin':admin})

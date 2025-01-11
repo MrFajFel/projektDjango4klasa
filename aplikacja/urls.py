@@ -12,7 +12,8 @@ urlpatterns = [
     path('wyloguj/',views.wyloguj,name='wyloguj'),
     path('wyloguj_done/',views.wyloguj_done,name='wyloguj_done'),
     path('rejestracja/',views.register,name='register'),
-    path('kontakt/',views.kontakt,name='kontakt')
+    path('kontakt/',views.kontakt,name='kontakt'),
+    path('dodajZwierzaka/',views.dodanieZwierzaka,name='dodajZwierzaka'),
 ]
 
 if settings.DEBUG:

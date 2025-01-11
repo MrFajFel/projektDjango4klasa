@@ -1,4 +1,5 @@
-{% load bootstrap5 %}
+{#{% load bootstrap5 %}#}
+{% load django_bootstrap5 %}
 {% load static %}
 {% bootstrap_css %}
 <!DOCTYPE html>
@@ -36,8 +37,8 @@
                 <a class="nav-link" href="/logowanie/">Zaloguj</a>
             </li>
     {% endif %}
-            {% if admin == True %}
-                <li> <a href="#"> {{ admin }} </a> </li>
+            {% if admin == '1' %}
+                <li> <a class="nav-link" href="/dodajZwierzaka/"> Dodaj Zwierzaka </a> </li>
             {% endif %}
 
       </ul>

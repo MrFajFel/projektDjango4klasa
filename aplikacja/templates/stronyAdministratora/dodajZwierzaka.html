@@ -1,0 +1,17 @@
+{% extends 'strony/base.html' %}
+{% block title %}
+    Dodawanie Zwierzaka
+{% endblock %}
+
+{% block content %}
+    <div style="width: 100%; height: fit-content; display: flex; justify-content: center; align-items:center;">
+        <form method="post" enctype="multipart/form-data">
+            <h1> Dodaj Zwierzaka </h1>
+            {{ form.as_p }}
+            {% csrf_token %}
+            <div style="justify-content: center; align-items: center; display:flex;">
+                <button type="submit" class="btn btn-primary" style="width: 80%" id="dodaj">Dodaj</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
