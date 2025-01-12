@@ -20,6 +20,11 @@ class UserRegistrationForm(forms.ModelForm):
             'password': forms.PasswordInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'})
         }
+        labels = {
+            'username': "Nazwa Użytkownika:",
+            'password': "Hasło:",
+            'email': "E-mail:"
+        }
 
 
 # {#co ma model animal = name, type, picture, animal_race, age, description, dodano, status #}
