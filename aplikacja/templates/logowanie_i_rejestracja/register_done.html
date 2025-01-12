@@ -1,6 +1,16 @@
 {% extends 'strony/base.html' %}
+
+{% block title %}Rejestracja zakończona{% endblock %}
+
 {% block content %}
-    <div class="alert alert-success" role="alert">
-        Rejestracja udana kliknij <a href="/logowanie/">tutaj</a> zeby przejsc do logowania
+    <div class="confirmation-container">
+        <div class="confirmation-message">
+            <h2>Gratulacje!</h2>
+            <p>Twoja rejestracja została zakończona pomyślnie.</p>
+            <p>Teraz możesz przejść do logowania, klikając poniższy przycisk.</p>
+            <div class="confirmation-actions">
+                <a href="/logowanie/" class="btn btn-primary">Zaloguj się teraz</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

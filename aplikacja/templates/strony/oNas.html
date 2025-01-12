@@ -1,16 +1,36 @@
 {% extends 'strony/base.html' %}
 
-
 {% block title %}
-    O nas
+    O nas - Schronisko w Dziurze Wielkiej
 {% endblock %}
+
 {% block content %}
-    <div class="strona">
-    <h1>Historia</h1>
-    <p></p>
-    <a href="#">instagram</a>
-    <a href="#">facebook</a>
-</div>
-    <label for="exampleColorInput" class="form-label">Wybierz kolorek</label>
-    <input style="height: fit-content" type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+    <div class="about-us-page">
+        <h1>O nas</h1>
+
+        <!-- Sekcja historia schroniska -->
+        <section class="history">
+            <h2>Historia Schroniska</h2>
+            <p>Nasze schronisko powstało z pasji i potrzeby pomocy. Kilka lat temu grupa miłośników zwierząt zauważyła, jak wiele psów i kotów błąka się bez domu i opieki. Początkowo działaliśmy w małym gronie, ratując zwierzęta i szukając im domów tymczasowych. Z czasem zaczęliśmy przyjmować coraz więcej podopiecznych, co wymagało stworzenia większej przestrzeni i organizacji.</p>
+            <p>Dzięki wsparciu lokalnej społeczności i zaangażowaniu wolontariuszy udało nam się przekształcić nasze działania w pełnoprawne schronisko. Obecnie oferujemy nie tylko schronienie dla zwierząt, ale również opiekę weterynaryjną, rehabilitację i programy adopcyjne.</p>
+        </section>
+
+        <!-- Sekcja misja i wizja -->
+        <section class="mission-vision">
+            <h2>Nasza Misja i Wizja</h2>
+            <p>Nasza misja to nie tylko ratowanie zwierząt, ale także edukowanie społeczności o odpowiedzialnym podejściu do adopcji i opieki nad zwierzętami. Naszym celem jest znalezienie domów dla wszystkich zwierząt, które trafiły do schroniska, i zapewnienie im lepszego życia.</p>
+            <p>Wizją naszej organizacji jest stworzenie miejsca, które będzie inspiracją do podejmowania działań na rzecz zwierząt. Chcemy, aby każde zwierzę mogło czuć się bezpieczne, kochane i miało szansę na nowy, pełen miłości dom.</p>
+        </section>
+
+        <!-- Sekcja zdjęć -->
+        <section class="gallery">
+            <h2>Galeria naszych wolontariuszy</h2>
+            <div class="image-gallery">
+                <img src="../../../media/girl-with-phone-istanbul.jpg" alt="wolontariusz 1">
+                <img src="../../../media/group-smiley-friends-outdoors-city.jpg" alt="wolontariusz 2">
+                <img src="../../../media/romantic-handsome-boyfriend-confessing-love-pointing.jpg" alt="wolontariusz 3">
+            </div>
+        </section>
+
+    </div>
 {% endblock %}

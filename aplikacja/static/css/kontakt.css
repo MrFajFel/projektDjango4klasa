@@ -1,0 +1,171 @@
+/* Kontener strony kontaktowej */
+.contact-page {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+/* Nagłówek strony kontaktowej */
+.contact-page h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Sekcja kontaktu z mapą i danymi */
+.contact-page .contact-map-info {
+    display: flex;
+    flex-wrap: wrap;  /* Pozwalamy sekcjom zawinąć na mniejsze ekrany */
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Sekcja formularza */
+.contact-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.contact-form h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Formularz - grupowanie pól */
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #ff5722;
+    outline: none;
+}
+
+/* Przycisk formularza */
+.submit-btn {
+    background-color: #ff5722;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #e64a19;
+}
+
+/* Sekcja z danymi kontaktowymi */
+.contact-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    flex: 1;  /* Sekcja kontaktowa ma rozciągać się, aby zająć dostępną przestrzeń */
+}
+
+.contact-info h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact-info p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.contact-info a {
+    color: #ff5722;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Styl mapy */
+.map {
+    flex: 1;  /* Mapa ma zajmować resztę dostępnej przestrzeni */
+}
+
+.map iframe {
+    width: 100%;
+    height: 350px;
+    border: 0;
+    border-radius: 8px;
+}
+
+/* Responsywność - dla ekranów poniżej 768px */
+@media (max-width: 768px) {
+    .contact-page {
+        padding: 15px;
+    }
+
+    .contact-form, .contact-info {
+        padding: 15px;
+    }
+
+    .submit-btn {
+        font-size: 16px;
+    }
+
+    /* Układ dla ekranów mniejszych niż 768px - zmiana układu na pionowy */
+    .contact-page .contact-map-info {
+        flex-direction: column;
+    }
+
+    .contact-info {
+        margin-bottom: 20px;
+    }
+
+    .map iframe {
+        height: 250px;  /* Zmniejszenie wysokości mapy na małych ekranach */
+    }
+}
+
+/* Zwiększenie rozmiaru tekstu na dużych ekranach */
+@media (min-width: 1200px) {
+    .contact-page h1 {
+        font-size: 40px;
+    }
+
+    .contact-form h2,
+    .contact-info h2 {
+        font-size: 32px;
+    }
+}

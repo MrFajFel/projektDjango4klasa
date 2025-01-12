@@ -1,8 +1,16 @@
-
 {% extends 'strony/base.html' %}
 
+{% block title %}Wylogowanie{% endblock %}
+
 {% block content %}
-    <div class="alert alert-success" role="alert">
-        Zostałeś wylogowany.
+    <div class="logout-message-container">
+        <div class="logout-message alert alert-success" role="alert">
+            <h2>Zostałeś wylogowany</h2>
+            <p>Twoje sesja została zakończona. Teraz możesz wrócić na stronę główną lub zalogować się ponownie.</p>
+            <div class="logout-actions">
+                <a href="/" class="btn btn-primary">Wróć do strony głównej</a>
+                <a href="/logowanie/" class="btn btn-secondary">Zaloguj się ponownie</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

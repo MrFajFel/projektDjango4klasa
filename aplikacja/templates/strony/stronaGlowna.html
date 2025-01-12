@@ -1,13 +1,32 @@
 {% extends 'strony/base.html' %}
 
-{% block title %} Schronisko {% endblock %}
+{% block title %}Schronisko{% endblock %}
 
 {% block content %}
 <div class="strona">
-    <h1>Schronisko w Dziurze Wielkiej</h1>
-    <p>Nasze schronisko to miejsce, gdzie zwierzęta czekają na nowe,kochające domy.Sprawdz,kto moze stać się Twoim najlepszym przyjacielem - każda adopcja to szansa na lepsze zycie</p>
-    <a href="#">instagram</a>
-    <a href="#">facebook</a>
-</div>
+    <h1><i class="fas fa-paw"></i> Schronisko w Dziurze Wielkiej</h1>
 
+    <!-- Główna zawartość -->
+    <div class="main-content">
+        <!-- Tekst po lewej stronie -->
+        <div class="left-content">
+            <p>Nasze schronisko to miejsce, gdzie zwierzęta czekają na nowe, kochające domy. Sprawdź, kto może stać się Twoim najlepszym przyjacielem – każda adopcja to szansa na lepsze życie.</p>
+
+            <!-- Przycisk mediów społecznościowych pod tekstem -->
+            <div class="social-icons">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Obrazek po prawej stronie -->
+        <div class="right-content">
+            <img src="../../../media/kiciusia.png" alt="Kiciusia w schronisku">
+        </div>
+    </div>
+</div>
 {% endblock %}

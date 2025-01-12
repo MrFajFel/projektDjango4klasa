@@ -1,0 +1,127 @@
+/* Podstawowe style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Strona o nas */
+.about-us-page {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Nagłówki */
+.about-us-page h1 {
+    font-size: 2.5rem;
+    color: #ff5722;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-us-page h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Sekcja historii schroniska */
+.history {
+    margin-bottom: 40px;
+}
+
+.history p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Sekcja misji i wizji */
+.mission-vision {
+    margin-bottom: 40px;
+}
+
+.mission-vision p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Galeria zdjęć */
+.gallery {
+    margin-bottom: 40px;
+}
+
+.gallery h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.image-gallery img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sekcja kontaktowa */
+.contact-info {
+    margin-bottom: 40px;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    color: #ff5722;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsywność */
+@media (max-width: 767px) {
+    .about-us-page {
+        padding: 20px;
+    }
+
+    .about-us-page h1 {
+        font-size: 2rem;
+    }
+
+    .about-us-page h2 {
+        font-size: 1.6rem;
+    }
+
+    .history p,
+    .mission-vision p {
+        font-size: 1rem;
+    }
+
+    .image-gallery img {
+        width: 100%;
+        height: auto;
+    }
+}

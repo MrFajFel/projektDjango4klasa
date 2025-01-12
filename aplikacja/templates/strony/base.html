@@ -6,25 +6,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../static/css/stronaGlowna.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{% static 'css/oNas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stronaGlowna.css' %}">
+    <link rel="stylesheet" href="{% static 'css/kontakt.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adopcja.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dodaj.css' %}">
+    <link rel="stylesheet" href="{% static 'css/wylogowanie.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rejestracja_done.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar bg-body-tertiary fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Strona glowna</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+         <p>Schronisko w Dziurze Wielkiej</p>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+         <ul class="navbar-nav">
+         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">Strona Główna</a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/o-nas/">O nas</a>
+          <a class="nav-link" aria-current="page" href="/o-nas/">O nas</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/kontakt/" >Kontakt</a>
         </li>
+
           {% if cookie_exists %}
               <li class="nav-item">
                 <a class="nav-link" href="/adopcja/">Adopcja</a>
@@ -42,6 +58,8 @@
             {% endif %}
 
       </ul>
+
+      </div>
     </div>
   </div>
 </nav>
@@ -49,5 +67,7 @@
 
 
     {% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

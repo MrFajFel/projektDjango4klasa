@@ -1,14 +1,25 @@
 {% extends 'strony/base.html' %}
-{% block title %}Utworz Konto{% endblock %}
+
+{% block title %}Utwórz Konto{% endblock %}
 
 {% block content %}
-    <h1 style="text-align: center">Utworz konto</h1>
-    <div style="height: fit-content; width: 80%; margin-left: auto; margin-top: 5rem">
-    <p>Wypelnij ponizszy formularz, aby sie zajerejstrowac</p>
-        <form action="#" method="post" style="width: 50%">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <p><input type="submit" class="btn btn-primary" value="Utworz konto"></p>
-        </form>
-    </div>
+    <main style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9;">
+        <div style="width: 100%; max-width: 450px; background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+            <h2 style="text-align: center; color: #333;">Utwórz Konto</h2>
+            <p style="text-align: center; color: #555;">Wypełnij poniższy formularz, aby się zarejestrować.</p>
+
+            <form method="post" style="display: flex; flex-direction: column; gap: 20px;">
+                {{ form.as_p }}
+                {% csrf_token %}
+
+                <!-- Przycisk rejestracji -->
+                <button type="submit" class="btn" style="padding: 12px; background-color: #ff5722;; color: white; border: none; font-size: 1.2rem; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                    Utwórz konto
+                </button>
+            </form>
+
+            <p style="text-align: center; margin-top: 20px;">Masz już konto? <a href="/logowanie/" style="color: #ff5722;">Zaloguj się</a></p>
+        </div>
+    </main>
 {% endblock %}
+

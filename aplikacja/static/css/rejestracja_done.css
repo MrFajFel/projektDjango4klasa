@@ -1,0 +1,67 @@
+/* Kontener dla całego powiadomienia */
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7; /* Jasny szary odcień tła */
+    padding: 20px;
+}
+
+/* Styl dla samego powiadomienia */
+.confirmation-message {
+    background-color: #ffffff; /* Białe tło dla powiadomienia */
+    border: 2px solid #5c6bc0;  /* Pastelowy niebieski, symbolizujący spokój */
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-message h2 {
+    font-size: 28px;
+    color: #5c6bc0; /* Pastelowy niebieski, kojarzący się z spokojem */
+    margin-bottom: 20px;
+}
+
+.confirmation-message p {
+    font-size: 16px;
+    color: #333;  /* Ciemny, neutralny kolor tekstu */
+    margin-bottom: 20px;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: #f57c00;  /* Ciepły pomarańczowy */
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #e65100;  /* Ciemniejszy pomarańczowy po najechaniu */
+    transform: translateY(-3px);  /* Efekt lekkiego unoszenia przycisku */
+}
+
+.btn-primary:active {
+    transform: translateY(1px);  /* Efekt kliknięcia przycisku */
+}
+
+/* Dostosowanie responsywności */
+@media (max-width: 768px) {
+    .confirmation-message {
+        padding: 30px;
+        width: 90%;
+    }
+}

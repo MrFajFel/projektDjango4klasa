@@ -1,0 +1,87 @@
+/* Kontener powiadomienia */
+.logout-message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+/* Styl powiadomienia o wylogowaniu */
+.logout-message {
+    background-color: #fff3e0;  /* Ciepły, jasny pomarańczowy */
+    border: 1px solid #ffe0b2;   /* Jaśniejszy odcień pomarańczu */
+    border-radius: 8px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    color: #e65100;  /* Ciemny odcień pomarańczu */
+}
+
+/* Tytuł powiadomienia */
+.logout-message h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #e65100;
+}
+
+/* Treść powiadomienia */
+.logout-message p {
+    font-size: 16px;
+    color: #e65100;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Kontener dla przycisków */
+.logout-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+/* Przycisk - Wróć do strony głównej */
+.btn-primary {
+    background-color: #1976d2;  /* Chłodny, elegancki niebieski */
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #1565c0;  /* Ciemniejszy niebieski */
+}
+
+/* Przycisk - Zaloguj się ponownie */
+.btn-secondary {
+    background-color: #78909c;  /* Stonowany odcień szarości */
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #607d8b;  /* Ciemniejszy odcień szarości */
+}
+
+/* Responsywność - dla ekranów poniżej 768px */
+@media (max-width: 768px) {
+    .logout-message {
+        width: 90%;
+        padding: 20px;
+    }
+}

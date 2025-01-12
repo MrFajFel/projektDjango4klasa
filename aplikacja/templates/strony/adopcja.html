@@ -1,28 +1,23 @@
 {% extends 'strony/base.html' %}
 
-
-
 {% block title %}
     Adopcja
 {% endblock %}
 
-{#co ma model animal = name, type, picture, animal_race, age, description, dodano, status #}
 {% block content %}
-    <div style="display: flex">
-    {% for Animal in Animals %}
-        {% if Animal.status != "adoptowany" %}
-            <div class="card" style="width: 20%">
-              <img src="{{ Animal.picture.url }}" class="card-img-top" alt="rysio why">
+    <div class="adoption-container">
+        {% for Animal in Animals %}
+            {% if Animal.status != "adoptowany" %}
+                <div class="card">
+                    <img src="{{ Animal.picture.url }}" class="card-img-top" alt="{{ Animal.name }}">
 
-              <div class="card-body">
-                <h5 class="card-title">{{ Animal.name }} Lat: {{ Animal.age }}</h5>
-                <p class="card-text">{{ Animal.description }} , {{ Animal.status }}</p>
-                <a href="/kontakt/" class="btn btn-primary">Kontakt</a>
-              </div>
-            </div>
-
-        {% else %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ Animal.name }} - Lat: {{ Animal.age }}</h5>
+                        <p class="card-text">{{ Animal.description }} , {{ Animal.status }}</p>
+                        <a style="background-color: #ff5722"href="/kontakt/" class="btn btn-primary">Kontakt</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
-        {% endif %}
-    {% endfor %}
 {% endblock %}
