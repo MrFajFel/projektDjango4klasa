@@ -83,23 +83,33 @@ def wyloguj(request):
 
 def wyloguj_done(request):
     return render(request, 'logowanie_i_rejestracja/wyloguj.html', {'wyloguj': 'wyloguj'})
+
+
 def register(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
     if cookie_exists:
         return HttpResponseRedirect('/')
+
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            username = form.cleaned_data['username']
 
-            new_user = User(
-                username=form.cleaned_data['username'],
-                password=make_password(form.cleaned_data['password']),
-                email=form.cleaned_data['email']
-            )
-            new_user.save()
-            return render(request, 'logowanie_i_rejestracja/register_done.html', {'form': form})
+            # Sprawdzenie, czy użytkownik już istnieje
+            if User.objects.filter(username=username).exists():
+                form.add_error('username', 'Użytkownik o podanej nazwie już istnieje.')  # Dodanie błędu do formularza
+            else:
+                # Tworzenie nowego użytkownika
+                new_user = User(
+                    username=username,
+                    password=make_password(form.cleaned_data['password']),
+                    email=form.cleaned_data['email']
+                )
+                new_user.save()
+                return render(request, 'logowanie_i_rejestracja/register_done.html', {'form': form})
     else:
         form = UserRegistrationForm()
+
     return render(request, 'logowanie_i_rejestracja/rejestracja.html', {'form': form})
 
 
