@@ -41,7 +41,8 @@ def about_us(request):
 def kontakt(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
     admin = request.COOKIES.get('Zalogowany', 1)
-    return render(request, 'strony/kontakt.html', {'cookie_exists':cookie_exists, 'admin':admin})
+    email = request.COOKIES.get('email')
+    return render(request, 'strony/kontakt.html', {'cookie_exists':cookie_exists, 'admin':admin,'email':email})
 
 def logowanie(request):
     cookie_exists = 'Zalogowany' and "username" in request.COOKIES
@@ -62,6 +63,7 @@ def logowanie(request):
                     else:
                         response.set_cookie("Zalogowany", '0')# ustawienie ciasteczka
                     response.set_cookie("username", user.username)
+                    response.set_cookie('email',user.email)
                     return response
                 else:
                     form.add_error(None, "Niepoprawne dane logowania")

@@ -38,5 +38,12 @@ class AddAnimal(forms.ModelForm):
                 'id': 'exampleFormControlTextarea1',
                 'rows': 3
             }),
-            'status':forms.Select(attrs={'class':'form-select',"aria-label":"Default select example"}),
+        }
+        labels = {
+            'name': 'Imie:',
+            'age': 'Wiek:',
+            'type': 'Typ Zwierzaka:',
+            'picture': 'Zdjęcie Zwierzęcia',
+            'animal_race': 'Rasa',
+            'description': 'Opis',
         }
