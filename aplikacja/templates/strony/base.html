@@ -45,6 +45,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="/adopcja/">Adopcja</a>
               </li>
+              <li>
+                  <a class="nav-link" href="/adoptowaneZwierzaki/"> Adoptowane Zwierzaki </a>
+              </li>
+              {% if admin == '1' %}
+                <li> <a class="nav-link" href="/dodajZwierzaka/"> Dodaj Zwierzaka </a> </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="/wyloguj/">Wyloguj</a>
               </li>
@@ -53,9 +59,7 @@
                 <a class="nav-link" href="/logowanie/">Zaloguj</a>
             </li>
     {% endif %}
-            {% if admin == '1' %}
-                <li> <a class="nav-link" href="/dodajZwierzaka/"> Dodaj Zwierzaka </a> </li>
-            {% endif %}
+
 
       </ul>
 

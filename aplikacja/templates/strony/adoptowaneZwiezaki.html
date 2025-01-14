@@ -7,16 +7,15 @@
 {% block content %}
     <div class="adoption-container">
         {% for Animal in Animals %}
-            {% if Animal.status != "adoptowany" %}
+            {% if Animal.status != "Nie-adoptowany" and Animal.status != 'nie-adoptowany' %}
                 <div class="card">
                     <img src="{{ Animal.picture.url }}" class="card-img-top" alt="{{ Animal.name }}">
 
                     <div class="card-body">
                         <h5 class="card-title">{{ Animal.name }} - Lat: {{ Animal.age }}</h5>
                         <p class="card-text">{{ Animal.description }} , {{ Animal.status }}</p>
-                        <a style="background-color: #ff5722" href="/kontakt/" class="btn btn-primary">Kontakt</a>
                         {% if admin == '1' %}
-                            <a href="{% url 'zmianaStatusuAdoptowany' Animal.id %}" class="btn btn-success">Zmień status na "Adoptowany"</a>
+                            <a href="{% url 'zmianaStatusuNieAdopotwany' Animal.id %}" class="btn btn-success">Zmień status na "Nie-Adoptowany"</a>
                         {% endif %}
                     </div>
                 </div>

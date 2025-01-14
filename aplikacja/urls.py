@@ -14,6 +14,9 @@ urlpatterns = [
     path('rejestracja/',views.register,name='register'),
     path('kontakt/',views.kontakt,name='kontakt'),
     path('dodajZwierzaka/',views.dodanieZwierzaka,name='dodajZwierzaka'),
+    path('zmianaStatusuadoptowany/<int:animal_id>/', views.zmianaStatusuNaAdoptowany, name='zmianaStatusuAdoptowany'),
+    path('zmianaStatusunieadoptowany/<int:animal_id>/', views.zmianaStatusuNaNieAdoptowany, name='zmianaStatusuNieAdopotwany'),
+    path('adoptowaneZwierzaki/',views.AdoptowaneZwierzaki.as_view(),name='adoptowaneZwierzaki'),
 ]
 
 if settings.DEBUG:

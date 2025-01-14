@@ -13,4 +13,4 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Animals)
 class Animals(admin.ModelAdmin):
-    list_display = ('name','type','animal_race','age','description')
+    list_display = ('id','name','type','animal_race','age','description')

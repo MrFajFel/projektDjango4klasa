@@ -1,6 +1,7 @@
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.dateparse import parse_datetime
 from django.views.generic import ListView
 
 from aplikacja.form import UserRegistrationForm, LogForm, AddAnimal
@@ -135,3 +136,39 @@ def dodanieZwierzaka(request):
     else:
         form = AddAnimal()
     return render(request, 'stronyAdministratora/dodajZwierzaka.html', {'form': form,'cookie_exists':cookie_exists, 'admin':admin})
+
+
+def zmianaStatusuNaAdoptowany(request, animal_id):
+    animal = get_object_or_404(Animals, id=animal_id)
+
+    animal.status = 'adoptowany'
+    animal.save()
+
+    return redirect('/adopcja/')
+
+def zmianaStatusuNaNieAdoptowany(request, animal_id):
+    animal = get_object_or_404(Animals, id=animal_id)
+
+    animal.status = 'Nie-adoptowany'
+    animal.save()
+
+    return redirect('/adoptowaneZwierzaki/')
+
+class AdoptowaneZwierzaki(ListView):
+    queryset = Animals.objects.all().order_by('-dodano')
+    context_object_name = 'Animals'
+    paginate_by = 9
+    template_name = 'strony/adoptowaneZwiezaki.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        admin = request.COOKIES.get('Zalogowany', 1)
+        if "Zalogowany" not in request.COOKIES or "username" not in request.COOKIES:
+            return redirect('/')
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cookie_exists'] = 'Zalogowany' in self.request.COOKIES and "username" in self.request.COOKIES
+        context['username'] = self.request.COOKIES.get("username", "")
+        context['admin'] = self.request.COOKIES.get('Zalogowany', 1)
+        return context

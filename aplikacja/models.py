@@ -17,6 +17,7 @@ class Animals(Model):
         ('adoptowany', 'Adoptowany'),
         ('nie-adoptowany', 'Nie-adoptowany')
     )
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=100)
     picture = models.ImageField(upload_to='zdjecia', blank=True, null=True)
